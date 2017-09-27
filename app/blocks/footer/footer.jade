@@ -1,0 +1,7 @@
+include ../footer-menu/footer-menu
+mixin footer()
+		+b.footer&attributes(attributes)
+				+e('h5').logo
+						| @ ICNDY 2014
+				+footer-menu()
+				+e.social-sprite

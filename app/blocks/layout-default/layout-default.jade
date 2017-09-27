@@ -4,12 +4,21 @@ include ../page/page
 include ../scripts/scripts
 include ../header/header
 include ../container/container
+include ../content/content
+include ../slugs/slugs
+include ../content/content
+include ../footer-insta/footer-insta
+include ../footer/footer
 
 doctype html
 html(lang='ru')
 		include ../head/head
 		+page
 				+container
-						+header
+								+header()
+								+slugs()
+				+content()
+				+footer-insta()
+				+footer
 		block content
 		+scripts(['app.min.js'])
