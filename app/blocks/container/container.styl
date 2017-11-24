@@ -1,0 +1,71 @@
+* {
+	transition all .3s
+}
+.container
+	height 100vh
+	display flex
+	justify-content center
+	align-items center
+	
+.todo-block
+	width: 500px
+	
+	background wheat
+	display flex
+	justify-content center
+	align-items center
+	flex-direction column
+#todo
+	border-top none
+	border-left none
+	border-right none
+
+form
+	display flex
+	padding 50px
+	justify-content center
+	margin 0px auto
+	max-width 500px
+	flex-flow column wrap
+	overflow hidden
+.input-box
+		display flex
+		position relative
+		flex-direction column
+		align-items center
+#submit
+	width: 128px
+	height: 0px
+	padding: 11px
+	display: flex
+	line-height: 10px
+	justify-content center
+#todo
+	padding: 5px
+	width: 265px
+
+ul li
+	padding 5px
+	
+.check
+	text-decoration line-through
+
+
+#gallery
+	width:860px
+	margin 0 auto
+	text-align center
+.photos
+	position relative
+	height 670px
+.photos img
+			width:100%
+			position absolute
+			left 0
+			opacity 0
+			transition opacity 1s
+	
+	
+#gallery .photos img.showed {
+	opacity 1
+}
