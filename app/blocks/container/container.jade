@@ -1,0 +1,23 @@
+mixin container()
+	+b.container&attributes(attributes)
+		.todo-block
+			h1 Todo
+			.form-box
+				form(action='#')
+					.input-box
+						input(type='text' id='todo')
+						input(type='button' id='submit' value='Добавить')
+			ul#list-todo
+	+b.slider_container
+		#gallery
+			.photos
+				img(src='./assets/img/nike.jpg').showed
+				img(src='./assets/img/ima.jpg')
+				img(src='./assets/img/ima1.jpg')
+				img(src='./assets/img/ima2.jpg')
+		.buttons
+			input(type='button' value='Назад').prev
+			input(type='button' value='Вперед').next
+
+
+
