@@ -1,0 +1,109 @@
+.js__data
+	display block
+	margin-top 35px
+	margin-left 8px
+	
+.title__jsskill
+	font-set(24px,700,49.83px)
+	font-family "PT Sans"
+	
+.slider__skill
+	margin-top 2%
+	
+.RangeSlider_ClickArea {
+	position: relative;
+	padding: 20px 0 15px 0;
+	margin-top: -20px;
+	user-select: none;
+}
+
+.RangeSlider_Track {
+	border: 1px solid #5e5e5e;
+	background-color: #2f1b15;
+	position: relative;
+	transition: all .3s;
+}
+.RangeSlider_TrackFill {
+	position: relative;
+	width: 0%;
+	height: 1px;
+	transition: width .1s ease-in;
+}
+
+.RangeSlider_TrackFill.RangeSlider_TrackFill-stopAnimation {
+	transition: none;
+}
+.RangeSlider_Thumb {
+	sprite $cursor
+	position: absolute;
+	top: 0;
+	right: 0;
+	border-radius: 50%;
+	cursor: pointer;
+	transform: translate(50%, -120.33%);
+}
+
+.RangeSlider_TrackFill-stopAnimation .RangeSlider_Thumb:before {
+	content: "";
+	display: block;
+	width: 1000px;
+	height: 1000px;
+	position: absolute;
+	top: -500px;
+	left: -500px;
+	border-radius: 50%;
+	/* background: rgba(255,255,255,0.1); */
+}
+.RangeSlider_Points {
+	display: flex;
+	 width: 100%;
+	
+}
+.RangeSlider_Point {
+	font-size: 11px;
+	color: #ddd;
+	cursor: pointer;
+	
+	text-align: center;
+	font-set(13px,700,19px)
+	font-family "PT Sans"
+}
+.RangeSlider_Point:hover {
+	color: #fff;
+}
+.RangeSlider_Point:before {
+	content: "";
+	display: block;
+	background-color: #666;
+	margin: 0 auto;
+	width: 3px;
+	height: 26px;
+	top: -1px;
+	left: -0.8px;
+	position: relative;
+}
+.RangeSlider_Point.RangeSlider_PointActive {
+	color: #FFDF1B;
+}
+
+.RangeSlider_Point:first-child
+	flex: 1 1 0%;
+	position: relative;
+	right: 67px;
+	
+.RangeSlider_Point:last-child
+	flex: 1 1 0
+	position: relative
+	left: 69.6px
+	
+.RangeSlider_Point:nth-child(2),
+.RangeSlider_Point:nth-child(3)
+	flex 2 1 0%
+	
+.RangeSlider_Point:nth-child(2):before,
+.RangeSlider_Point:nth-child(3):before
+					height 11px
+					
+.RangeSlider_Point:nth-child(2) > p,
+.RangeSlider_Point:nth-child(3) > p
+				margin-top 13.5px

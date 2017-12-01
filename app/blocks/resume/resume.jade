@@ -1,0 +1,9 @@
+include ../header/header
+include ../content/content
+include ../footer/footer
+mixin resume()
+	+b.resume&attributes(attributes)
+		+header()
+		+content()
+		+footer()
+

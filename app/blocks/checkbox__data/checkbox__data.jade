@@ -1,0 +1,33 @@
+mixin checkboxes(...items)
+		each item in items
+			.item__checkbox
+				input(type='checkbox' id= item.checkid)
+				label(for= item.checkid)= item.check
+
+
+
+mixin checkbox__data()
+	+b.checkbox__data&attributes(attributes)
+		h3.about__title
+			| Расскажите о себе чекбоксами
+		p.about__rule
+			|  Отметьте чекбоксами пункты, которые соответствуют вашим скиллам. Кстати, отсутствие опыта не означает, что у вас меньше шансов стать одним из наших товарищей. Это означает, что вы будете получать те задачи,
+			|	с которыми гарантировано будете справляться.
+		.about__me
+			.left__box
+				+checkboxes({checkid:'bem',check: 'БЕМ/OOCSS'},{checkid:'jade',check: 'Pug(Jade)'},
+				{checkid:'css',check: 'Stylus/LESS/SASS'},{checkid:'svg',check: 'Работаю с SVG'},
+				{checkid:'proofs',check: 'Верстаю семантично'},{checkid:'a11y',check: 'Accessibility (A11Y)'},
+				{checkid:'es',check: 'ES2015/2016'  })
+			.center__box
+				+checkboxes({checkid: 'gulp', check: 'Gulp/GRUNT'},{checkid: 'webpack', check: 'Webpack'},
+				{checkid: 'webgl', check: 'Дружу с WebGL'},{checkid: 'jquery', check: 'jQuery'},
+				{checkid: 'angular', check: 'Знаю/изучаю Angular'},{checkid: 'react', check: 'Знаю/изучаю React'},
+				{checkid: 'node', check: 'Знаю/изучаю Nodejs'})
+			.right__box
+				+checkboxes({checkid: 'git', check: 'Использую GIT'},{checkid: 'pixel', check: 'С глазомером все ок'},
+				{checkid: 'blog', check: 'Читаю blog.csssr.ru'},{checkid: 'leny', check: 'Я ленивый(-ая)'},
+				{checkid: 'english', check: 'У меня хороший английский'})
+
+
+

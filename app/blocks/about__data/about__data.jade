@@ -1,0 +1,14 @@
+mixin input-data(...items)
+		each item in items
+			.item__about
+				label(for= item.item_id)= item.item_data
+				input(type='text' id= item.item_id value= item.about_me)
+
+
+mixin about__data()
+	+b.about__data&attributes(attributes)
+		+input-data({item_data:'Полное ФИО',item_id:'fio',about_me: 'Юрий Желудков'})
+		+input-data({item_data:'Год рождения',item_id:'year_birth',about_me: '1995'})
+		+input-data({item_data:'Место жительства',item_id:'location',about_me: 'Черкассы'})
+		+input-data({item_data:'Скайп',item_id:'skype',about_me: 'jor.zhel'})
+		+input-data({item_data:'Почта',item_id:'email',about_me: 'jek@yahoo.com'})
