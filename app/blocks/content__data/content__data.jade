@@ -1,0 +1,11 @@
+include ../about__data/about__data
+include ../checkbox__data/checkbox__data
+include ../js__data/js__data
+include ../yuriz__data/yuriz__data
+
+mixin content__data()
+	+b.content__data&attributes(attributes)
+		+about__data()
+		+checkbox__data()
+		+js__data()
+		+yuriz__data()

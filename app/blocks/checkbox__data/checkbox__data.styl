@@ -1,0 +1,46 @@
+.checkbox__data
+	display block
+	margin-top 33.5px
+	margin-left 9px
+	letter-spacing -0.08px
+	
+.about__me
+	display flex
+	justify-content space-between
+	margin-top 18px
+.about__title
+	font-set(24px,700,49.83px)
+	font-family "PT Sans"
+.about__rule
+	width 93.1%
+	letter-spacing 0.065px
+	font-set(15px,400,23px,#3d3d3d)
+	font-family "PT Sans"
+	
+.item__checkbox
+	margin 10px
+	input[type='checkbox']
+		display none
+	input[type='checkbox'] + label
+			position relative
+			padding-left 23px
+			font-set(21px,700,20px)
+			font-family "PT Sans"
+			&:before
+				content: ""
+				display block
+				position absolute
+				sprite $box
+	input[type='checkbox']:checked + label:before
+				position: absolute
+				top: -8px
+				sprite $checkbox
+.center__box
+	flex 1
+.left__box
+	flex 1
+.right__box
+	flex 1
+	
+
+	
