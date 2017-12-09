@@ -1,17 +1,19 @@
-.checkbox__data
+.skills__data
 	display block
 	margin-top 33.5px
 	margin-left 9px
 	letter-spacing -0.08px
-	
+@media screen and (min-width: 1400px)
+	.skills__data
+		margin-left 0px
 .about__me
 	display flex
 	justify-content space-between
 	margin-top 18px
-.about__title
+.skills__title
 	font-set(24px,700,49.83px)
 	font-family "PT Sans"
-.about__rule
+.skills__rule
 	width 93.1%
 	letter-spacing 0.065px
 	font-set(15px,400,23px,#3d3d3d)
@@ -22,25 +24,28 @@
 	input[type='checkbox']
 		display none
 	input[type='checkbox'] + label
-			position relative
-			padding-left 23px
-			font-set(21px,700,20px)
-			font-family "PT Sans"
-			&:before
+		position relative
+	input[type='checkbox'] + label p
+				padding-left 23px
+				font-set(21px,700,20px)
+				font-family "PT Sans"
+	input[type='checkbox'] + label:before
 				content: ""
 				display block
 				position absolute
 				sprite $box
 	input[type='checkbox']:checked + label:before
 				position: absolute
-				top: -8px
+				top: -10px
 				sprite $checkbox
 .center__box
-	flex 1
+	flex 1.37
 .left__box
-	flex 1
+	flex 1.32
+	margin-left -11.4px
 .right__box
-	flex 1
+	flex 1.62
 	
-
+.item__checkbox
+	margin 14.6px
 	
