@@ -1,33 +1,31 @@
-mixin checkboxes(...items)
+mixin checkboxes(box,...items)
 		each item in items
-			.item__checkbox
-				input(type='checkbox' id= item.checkid)
-				label(for= item.checkid)= item.check
-
-
+			div(class='item__checkbox ' + box.boxName)
+				input(type='checkbox' class='item__checkbox-input ' + `item__checkbox-${item.checkid}`  id=item.checkid checked=item.testcheck)
+				label(for= item.checkid class='item__checkbox-label ' + `item__checkbox-${item.checkid}`)
+					p= item.check
 
 mixin checkbox__data()
-	+b.checkbox__data&attributes(attributes)
-		h3.about__title
+	+b.skills__data&attributes(attributes)
+		+e('h3').title.skills__title-data
 			| Расскажите о себе чекбоксами
-		p.about__rule
+		+e('p').rule.skills__rule-data
 			|  Отметьте чекбоксами пункты, которые соответствуют вашим скиллам. Кстати, отсутствие опыта не означает, что у вас меньше шансов стать одним из наших товарищей. Это означает, что вы будете получать те задачи,
 			|	с которыми гарантировано будете справляться.
-		.about__me
+		+b('div').about__me
 			.left__box
-				+checkboxes({checkid:'bem',check: 'БЕМ/OOCSS'},{checkid:'jade',check: 'Pug(Jade)'},
-				{checkid:'css',check: 'Stylus/LESS/SASS'},{checkid:'svg',check: 'Работаю с SVG'},
-				{checkid:'proofs',check: 'Верстаю семантично'},{checkid:'a11y',check: 'Accessibility (A11Y)'},
-				{checkid:'es',check: 'ES2015/2016'  })
+				+checkboxes({boxName:'item__checkboxes-left'},{checkid: 'bem', check: 'БЕМ/OOCSS', testcheck: true},{checkid: 'jade', check: 'Pug(Jade)', testcheck: true},
+							{checkid: 'css', check: 'Stylus/LESS/SASS', testcheck: true},{checkid: 'svg', check: 'Работаю с SVG', testcheck: true},
+							{checkid: 'proofs', check: 'Верстаю семантично', testcheck: true},{checkid: 'a11y', check: 'Accessibility (A11Y)', testcheck: true},
+							{checkid: 'es', check: 'ES2015/ES2016', testcheck: true} )
 			.center__box
-				+checkboxes({checkid: 'gulp', check: 'Gulp/GRUNT'},{checkid: 'webpack', check: 'Webpack'},
-				{checkid: 'webgl', check: 'Дружу с WebGL'},{checkid: 'jquery', check: 'jQuery'},
-				{checkid: 'angular', check: 'Знаю/изучаю Angular'},{checkid: 'react', check: 'Знаю/изучаю React'},
-				{checkid: 'node', check: 'Знаю/изучаю Nodejs'})
+				+checkboxes({boxName:'item__checkboxes-center'},{checkid: 'gulp', check: 'Gulp/GRUNT', testcheck: true},{checkid: 'webpack', check: 'Webpack', testcheck: true},
+							{checkid: 'webgl', check: 'Дружу с WebGL'},{checkid: 'jquery', check: 'jQuery', testcheck: true},
+							{checkid: 'angular', check: 'Знаю/изучаю Angular'},{checkid: 'react', check: 'Знаю/изучаю React', testcheck: true},
+							{checkid: 'node', check: 'Знаю/изучаю Nodejs', testcheck: true})
 			.right__box
-				+checkboxes({checkid: 'git', check: 'Использую GIT'},{checkid: 'pixel', check: 'С глазомером все ок'},
-				{checkid: 'blog', check: 'Читаю blog.csssr.ru'},{checkid: 'leny', check: 'Я ленивый(-ая)'},
-				{checkid: 'english', check: 'У меня хороший английский'})
-
+				+checkboxes({boxName:'item__checkboxes-right'},{checkid: 'git', check: 'Использую Git', testcheck: true},{checkid: 'pixel', check: 'С глазомером все ок', testcheck: true},
+							{checkid: 'blog', check: 'Читаю blog.csssr.ru', testcheck: true},{checkid: 'leny', check: 'Я ленивый(-ая)', testcheck: true},
+							{checkid: 'english', check: 'У меня хороший   английский', testcheck: true})
 
 

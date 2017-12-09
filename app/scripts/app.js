@@ -1,12 +1,16 @@
 import svg4everybody from 'svg4everybody';
 import $ from 'jquery';
-import slider from './modules/slider-range'
+import slider from './modules/slider-range';
+const aboutme  = require ("../blocks/about__data/" + getVersion('ru'))
+const anketaEN  = require ("../blocks/about__data/" + getVersion('en'))
+const inputContainer = document.querySelector('.yuriz__history');
+const inputs = document.querySelectorAll('.story__to-yourself')
 $(() => {
 	svg4everybody();
 });
 
 const sliderTemplate = document.querySelector('.slider__skill')
-sliderTemplate.innerHTML = ` 
+sliderTemplate.innerHTML = `
  <div class="RangeSlider" id="RangeSlider">
   <div class="RangeSlider_ClickArea">
     <div class="RangeSlider_Track">
@@ -15,129 +19,115 @@ sliderTemplate.innerHTML = `
       </div>
     </div><!-- /.RangeSlider_Track -->
     <div class="RangeSlider_Points">
-      <div class="RangeSlider_Point RangeSlider_PointActive">
+      <div class="RangeSlider_Point">
       <p>Не владею</p></div>
       <div class="RangeSlider_Point"><p>Использую готовые решения</p></div>
       <div class="RangeSlider_Point"><p>Использую готовые решения и умею их переделывать</p></div>
-      <div class="RangeSlider_Point"><p>Пишу сложный JS с нуля</p></div>
+      <div class="RangeSlider_Point RangeSlider_PointActive"><p>Пишу сложный JS с нуля</p></div>
     </div>
   </div>
 </div>`
 
-
-const point = document.querySelector('.RangeSlider_Thumb')
-point.addEventListener('mousedown',function (event) {
-	console.log('нажата')
-})
-point.addEventListener('mousemove',function (event) {
-	console.log('поехали')
-})
-point.addEventListener('mouseup',function (event) {
-	console.log('отпущена')
+new slider({
+	containerSlider: 'RangeSlider'
 })
 
-class RangeSlider {
-	constructor (parameters) {
-		var self = this
-		this._length = 3
-		this.value = 0
-		this.sliderID = document.querySelector('#' + parameters.containerSlider)
-		this.sliderThumb = document.querySelector('.RangeSlider_Thumb')
-		this.sliderTrack = document.querySelector('.RangeSlider_Track')
-		this.sliderTrackFill = document.querySelector('.RangeSlider_TrackFill')
-		this.clickArea = document.querySelector('.RangeSlider_ClickArea')
-		this.sliderPoint = document.querySelectorAll('.RangeSlider_Point')
+window.addEventListener('load',function (event) {
+	addValue(aboutme)
+	getAboutData(aboutme)
+})
+
+document.querySelector('.button').addEventListener('click',function (event) {
+	if(this.classList.contains('active')) {
+		window.location.reload()
 	}
-
-
-
-	_findValue (trackFill) {
-		let value = Math.round((trackFill / this.sliderTrack.offsetWidth) * this._length)
-		return value
+	addValue(anketaEN)
+	if(inputContainer.childNodes.length) {
+		updateInputs(inputContainer)
+		getAboutData(anketaEN)
+		addClassEN(inputContainer)
 	}
+	this.classList.add('active')
+})
 
-	_updateValue (newValue) {
-		this.SliderPoints.classList.remove('RangeSlider_PointActive');
-		this.sliderPoint[newValue].classList.add('RangeSlider_PointActive');
+
+inputContainer.addEventListener('input', function(e) {
+	e = event.target
+	if (e.value.length == e.getAttribute('maxlength')) {
+		creatingInput(this,e)
 	}
-
-	_updateTrackFill (newPosition) {
-		newPosition = (newPosition / length * 100) + '%'
-		this.sliderTrackFill.offsetWidth = newPosition
-	}
-
-	_setupDrag (element, initialXPosition) {
-		this.sliderTrackFill.classList.add('RangeSlider_TrackFill-stopAnimation')
-		let trackWidth = this.sliderTrackFill.offsetWidth //здесь может быть ошибка
-		this.newValue = _findValue(trackWidth)
-		_updateValue(this.newValue)
-
-		element.addEventListener('mousemove', function (event) {
-			let newPosition = trackWidth + event.clientX - initialXPosition;
-			self.imitateNewValue(newPosition)
-
-			this.newValue = _findValue(this.sliderTrackFill.offsetWidth / 4)
-			_updateValue(this.newValue)
-		})
-	}
-
-	_finishDrag (element) {
-		this.sliderTrackFill.classList.remove('RangeSlider_TrackFill-stopAnimation')
-		element.removeEventListener('mousemove')
-		let newValue = _findValue(parseInt(this.sliderTrackFill.offsetWidth))
-		self.updateSliderValue(newValue)
-	}
-
-	updateSliderValue = function (newValue) {
-		_updateValue(newValue);
-		_updateTrackFill(newValue);
-		self.value = newValue;
-		console.log('this.value = ', self.value);
-	}
-
-	/* method to imitate new value without animation */
-	imitateNewValue = function (XPosition) {
-		this.sliderTrackFill.addClass('RangeSlider_TrackFill-stopAnimation');
-		if (XPosition > this.sliderTrack.offsetWidth) {
-			XPosition = this.sliderTrack.offsetWidth
+})
+inputContainer.addEventListener('blur',function (event) {
+	if(event.target.value == '') {
+		if (inputs.length > 1) {
+			return this.removeChild(event.target)
 		}
-		this.sliderTrackFill.style.width = XPosition + 'px'
 	}
-	clickarea = function () {
-		clickArea.addEventListener('mousedown', function (event) {
-			var target = event.target
-			if (target.classList.contains('RangeSlider_Thumb')) {
-				return false
-			}
-			self.imitateNewValue(event.offsetX)
-			_setupDrag(this, event.clientX)
-		})
-	}
-	clickareaNew = function () {
-		clickArea.addEventListener('mouseup', function (event) {
-			console.log('"$ClickArea" calling "finishDrag"');
-			_finishDrag(this)
-		})
-	}
+},true)
 
-	sliderthumb = function () {
-		sliderThumb.addEventListener('mousedown', function (event) {
-			event.stopPropagation()
-			_setupDrag(this, event.clientX)
-		})
-	}
-	sliderthumbNew = function () {
-		sliderThumb.addEventListener('mouseup', function (event) {
-			console.log('"$SliderThumnb" calling "finishDrag"');
-			_finishDrag(this, event.clientX)
-		})
-	}
+document.querySelectorAll('.story__to-yourself').forEach(function (item) {
+	item.addEventListener('keyup',function () {
+		var $this = $(this);
+		if($this.val().length >= 55)
+			$this.val($this.val().substr(0, 55))
+	})
+})
 
+function getAboutData (dataInput) {
+	let substr;
+	for(var i = 0; i < dataInput.me.length;i++) {
+		if(dataInput.me.length > 55) {
+			substr = dataInput.me.match(/(.{1,55})/gim) || ''
+		}
+	}
+	substr.forEach(function (item) {
+		createInputJson(item)
+	})
 }
 
+function getVersion (ver) {
+	return `about_me-${ver}.json`
+}
 
+function getValue (val) {
+	return document.querySelectorAll('.item__input-about')[val]
+}
 
+function addClassEN (nodes) {
+	nodes.childNodes.forEach(function (item) {
+		item.classList.toggle('active')
+	})
+}
 
-const range = new RangeSlider({
-	  containerSlider: 'RangeSlider'
-})
+function addValue (version) {
+	var userData = version.user__data
+	getValue(0).value = userData.fullname
+	getValue(1).value = userData.date_birthday
+	getValue(2).value = userData.location
+	getValue(3).value = userData.skype
+	getValue(4).value = userData.email
+}
+
+function createInputJson (data) {
+	let input = document.createElement('input')
+	input.type = 'text'
+	input.value = data
+	input.maxLength = '55'
+	input.className = 'story__to-yourself'
+	inputContainer.appendChild(input)
+}
+
+function creatingInput (element,target) {
+	var newInput = target.cloneNode()
+	newInput.value = ''
+	element.appendChild(newInput)
+	return newInput.focus()
+}
+
+function updateInputs (node) {
+	let children = node.childNodes
+	while(children.length) {
+		node.removeChild(children[0])
+	}
+}
+

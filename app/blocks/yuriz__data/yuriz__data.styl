@@ -1,27 +1,30 @@
 .yuriz__data
-	display block
-	
+	display: flex
+	max-width: 770px
+	flex-direction: column
+	padding-left 10px
 .tellme__title
 	font-set(24px,700,49.83px)
 	font-family "PT Sans"
 
 .tellme__rule
-	letter-spacing 0.065px
 	font-set(15px,400,23px,#3d3d3d)
 	font-family "PT Sans"
-
+	letter-spacing: 0.165px
+	font-size: 15px
+	font-weight: 400
+	max-width: 740px
 	
 .plan__title
 	font-set(24px,700,49.83px)
 	font-family "PT Sans"
 
 .plan__rule
-	letter-spacing 0.065px
-	font-set(15px,400,23px,#3d3d3d)
+	font-set(15px,400,17px,#3d3d3d)
 	font-family "PT Sans"
-
+	letter-spacing: 0.165px;
 .plan__options
-	margin-top 3%
+	margin-top 17.1px
 	display flex
 	.option
 		input[type='radio']
@@ -39,7 +42,37 @@
 				top -12px
 		input[type='radio']:checked + label:before
 				sprite $radio
-			
-			
-		
+.plan__future
+	margin-top 45px
+	margin-left -8px
+.yuriz__history
+	display: flex
+	flex-direction: column
+	margin-top: 21px
+.story__to-yourself
+	border-top: none
+	border-left: none
+	border-color: #231f20
+	border-right: none
+	background: none
+	outline: none
+	color: #231f20
+	font-family: "Courier New PSMT"
+	font-size: 30px
+	font-weight: 400
+	line-height: 55.1px
+.option:nth-child(1)
+	flex: 0.59
+.option:nth-child(2)
+	flex: 1.1
+.option:nth-child(3)
+	flex: 0.87
+.option:nth-child(4)
+	flex: 1.08
 	
+@media screen and (min-width: 1400px)
+	.yuriz__data
+		padding-left 0px
+	.plan__future
+			margin-left: -7px
+			margin-top 48px

@@ -1,12 +1,13 @@
+
 mixin yuriz__data()
 	+b.yuriz__data&attributes(attributes)
-		h3.tellme__title
-			| Расскажи о себе словами
-		p.tellme__rule
-			| Напишите пару предложений, чем вас привлекла наша вакансия и чего вы ожидаете от работы в CSSSR.
-			| Кстати, будет здорово, если при нехватке места для текста строки будут добавляться автоматически.
+		.titles
+			h3.tellme__title
+				| Расскажите о себе словами
+			p.tellme__rule
+				| Напишите пару предложений, чем вас привлекла наша вакансия и чего вы ожидаете от работы в CSSSR.
+				| Кстати, будет здорово, если при нехватке места для текста строки будут добавляться автоматически.
 		+e('div').history
-			input(type='text')
 		.plan__future
 			h3.plan__title
 				| Какие у вас планы на будущее?
@@ -17,7 +18,7 @@ mixin yuriz__data()
 					input(type='radio' id='page-proofs' name='option_skills')
 					label(for='page-proofs') Верстать
 				.option
-					input(type='radio' id='js-skill'  name='option_skills')
+					input(type='radio' id='js-skill'  name='option_skills' checked)
 					label(for='js-skill') Прокачиваться в JS
 				.option
 					input(type='radio' id='managing' name='option_skills')
